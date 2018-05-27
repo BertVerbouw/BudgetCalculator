@@ -1,22 +1,174 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="resources/budget.ico">
 
-    <!-- Bootstrap CSS -->
+    <title>Mega Budget Calculator</title>
+
+    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <title>Budgetteren voor dummies</title>
-  </head>
-  <body>
-      
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<body data-spy="scroll" data-target="#sidenav">
+    <nav class="navbar navbar-dark fixed-top bg-dark p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#dashboard">Mega Budget</a>
+        <div class="p-1 pr-3">
+            <span class="navbar-text">
+            Grand Total: 
+            </span>
+            <span class="navbar-text">
+            €250 
+            </span>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidenav" class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#dashboard">
+                  <span data-feather="file-text"></span>
+                  Dashboard
+                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#living">
+                  <span data-feather="file-text"></span>
+                  Living
+                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#keuken">
+                  <span data-feather="file-text"></span>
+                  Keuken
+                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#slaapkamers">
+                  <span data-feather="file-text"></span>
+                  Slaapkamers
+                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tuin">
+                  <span data-feather="file-text"></span>
+                  Tuin
+                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#hal">
+                  <span data-feather="file-text"></span>
+                  Hal
+                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#andere">
+                  <span data-feather="file-text"></span>
+                  Andere
+                </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
+                <div>
+                    <span class="anchor" id="dashboard"></span>
+                    <h4>Dashboard</h4>
+                    <div>
+                        <canvas height="500"></canvas>
+                    </div>
+                    <span class="anchor" id="living"></span>
+                    <h4>Living</h4>
+                    <div>
+                        <canvas height="500"></canvas>
+                    </div>
+                    <span class="anchor" id="keuken"></span>
+                    <h4>Keuken</h4>
+                    <div>
+                        <canvas height="500"></canvas>
+                    </div>
+                    <span class="anchor" id="slaapkamers"></span>
+                    <h4>Slaapkamers</h4>
+                    <div>
+                        <canvas height="500"></canvas>
+                    </div>
+                    <span class="anchor" id="tuin"></span>
+                    <h4>Tuin</h4>
+                    <div>
+                        <canvas height="500"></canvas>
+                    </div>
+                    <span class="anchor" id="hal"></span>
+                    <h4>Hal</h4>
+                    <div>
+                        <canvas height="500"></canvas>
+                    </div>
+                    <span class="anchor" id="andere"></span>
+                    <h4>Andere</h4>
+                    <div>
+                        <canvas height="500"></canvas>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  </body>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+
+    <!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                datasets: [{
+                    data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#007bff'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        });
+    </script>
+</body>
 </html>
