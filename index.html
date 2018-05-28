@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no">
     <meta name="description" content="">
@@ -89,13 +90,11 @@
                     </div>
                     <span class="anchor" id="living"></span>
                     <h4>Living</h4>
-                    <div>
-                        <canvas height="500"></canvas>
+                    <div id="livingdata" class="list-group">
                     </div>
                     <span class="anchor" id="keuken"></span>
                     <h4>Keuken</h4>
-                    <div>
-                        <canvas height="500"></canvas>
+                    <div id="keukendata" class="list-group">
                     </div>
                     <span class="anchor" id="slaapkamers"></span>
                     <h4>Slaapkamers</h4>
@@ -121,7 +120,20 @@
             </main>
         </div>
     </div>
-
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB0-gzBIif0Ho5MPvWzDLE9ySiytyfMgKY",
+            authDomain: "budgetmanager-c533c.firebaseapp.com",
+            databaseURL: "https://budgetmanager-c533c.firebaseio.com",
+            projectId: "budgetmanager-c533c",
+            storageBucket: "",
+            messagingSenderId: "640045020422"
+        };
+        firebase.initializeApp(config);
+    </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -139,36 +151,8 @@
         feather.replace()
     </script>
 
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script>
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                datasets: [{
-                    data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-                    lineTension: 0,
-                    backgroundColor: 'transparent',
-                    borderColor: '#007bff',
-                    borderWidth: 4,
-                    pointBackgroundColor: '#007bff'
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: false
-                        }
-                    }]
-                },
-                legend: {
-                    display: false,
-                }
-            }
-        });
-    </script>
+    <script src="js/script.js"></script>
+
 </body>
+
 </html>
