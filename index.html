@@ -17,14 +17,14 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body data-spy="scroll" data-target="#sidenav">
+<body data-spy="scroll" data-target="#sidenav" onload="init()">
     <nav class="navbar navbar-dark fixed-top bg-dark p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#dashboard">Mega Budget</a>
+        <a class="navbar-brand pl-3" href="#dashboard">Mega Budget</a>
         <div class="p-1 pr-3">
             <span class="navbar-text">
-            Grand Total: 
+            Totaal: 
             </span>
-            <span class="navbar-text">
+            <span class="navbar-text" id="grandtotal">
             €250 
             </span>
         </div>
@@ -36,46 +36,25 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#dashboard">
-                  <span data-feather="file-text"></span>
-                  Dashboard
-                </a>
+                            <a class="nav-link" href="#dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#living">
-                  <span data-feather="file-text"></span>
-                  Living
-                </a>
+                            <a class="nav-link" href="#living">Living</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#keuken">
-                  <span data-feather="file-text"></span>
-                  Keuken
-                </a>
+                            <a class="nav-link" href="#keuken">Keuken</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#slaapkamers">
-                  <span data-feather="file-text"></span>
-                  Slaapkamers
-                </a>
+                            <a class="nav-link" href="#slaapkamers">Slaapkamers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#tuin">
-                  <span data-feather="file-text"></span>
-                  Tuin
-                </a>
+                            <a class="nav-link" href="#tuin">Tuin</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#hal">
-                  <span data-feather="file-text"></span>
-                  Hal
-                </a>
+                            <a class="nav-link" href="#hal">Hal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#andere">
-                  <span data-feather="file-text"></span>
-                  Andere
-                </a>
+                            <a class="nav-link" href="#andere">Andere</a>
                         </li>
                     </ul>
                 </div>
@@ -84,42 +63,187 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
                 <div>
                     <span class="anchor" id="dashboard"></span>
-                    <h4>Dashboard</h4>
-                    <div>
-                        <canvas height="500"></canvas>
+                    <div class="card">
+                        <h4 class="card-header card-title">
+                            Dashboard
+                        </h4>
+                        <div id="dashboardchart" style="height:87vh" class="card-body"></div>
                     </div>
                     <span class="anchor" id="living"></span>
-                    <h4>Living</h4>
-                    <div id="livingdata" class="list-group">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Living</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#inputModal" data-section="living">+ Voorwerp toevoegen</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="livingdata" class="card-body">
+                        </div>
                     </div>
+
                     <span class="anchor" id="keuken"></span>
-                    <h4>Keuken</h4>
-                    <div id="keukendata" class="list-group">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Keuken</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#inputModal" data-section="keuken">+ Voorwerp toevoegen</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="keukendata" class="card-body"></div>
                     </div>
+
                     <span class="anchor" id="slaapkamers"></span>
-                    <h4>Slaapkamers</h4>
-                    <div>
-                        <canvas height="500"></canvas>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Slaapkamers</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#inputModal" data-section="slaapkamers">+ Voorwerp toevoegen</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="slaapkamersdata" class="card-body"></div>
                     </div>
+
                     <span class="anchor" id="tuin"></span>
-                    <h4>Tuin</h4>
-                    <div>
-                        <canvas height="500"></canvas>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Tuin</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#inputModal" data-section="tuin">+ Voorwerp toevoegen</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="tuindata" class="card-body"></div>
                     </div>
+
                     <span class="anchor" id="hal"></span>
-                    <h4>Hal</h4>
-                    <div>
-                        <canvas height="500"></canvas>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Hal</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#inputModal" data-section="hal">+ Voorwerp toevoegen</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="haldata" class="card-body"></div>
                     </div>
+
                     <span class="anchor" id="andere"></span>
-                    <h4>Andere</h4>
-                    <div>
-                        <canvas height="500"></canvas>
+                    <div class="card mt-3 mb-3">
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Andere</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#inputModal" data-section="andere">+ Voorwerp toevoegen</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="anderedata" class="card-body"></div>
                     </div>
                 </div>
             </main>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Voeg een voorwerp toe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="inputform">
+                        <input type="hidden" class="modal-section">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="naamInput">Naam</label>
+                                <input type="text" class="form-control" id="naamInput" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="priceInput">Prijs</label>
+                                <input type="number" class="form-control" id="priceInput">
+                            </div>
+                            <div class="form-group">
+                                <label for="linksInput">Links</label>
+                                <textarea class="form-control" id="linksInput" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" type="submit" onclick="addItem()">Toevoegen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelEdit" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabelEdit">Voorwerp aanpassen</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="inputform">
+                        <input type="hidden" class="modal-section">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="naamEdit">Naam</label>
+                                <input type="text" class="form-control" id="naamEdit" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="priceEdit">Prijs</label>
+                                <input type="number" class="form-control" id="priceEdit">
+                            </div>
+                            <div class="form-group">
+                                <label for="linksEdit">Links</label>
+                                <textarea class="form-control" id="linksEdit" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" type="submit" onclick="editItem()">Toevoegen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
     <script>
@@ -133,26 +257,36 @@
             messagingSenderId: "640045020422"
         };
         firebase.initializeApp(config);
+
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-        feather.replace()
-    </script>
-
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        $('#inputModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('section') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-section').val(recipient)
+        })
+        $('#editModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('section') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-section').val(recipient)
+        })
 
+    </script>
 </body>
 
 </html>

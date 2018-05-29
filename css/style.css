@@ -1,6 +1,5 @@
 body {
     font-size: .875rem;
-    height: 100%;
     position: relative;
 }
 
@@ -83,7 +82,12 @@ body {
 [role="main"] {
     padding-top: 58px;
     height: 100%;
+    background: #f1f1f1;
     /* Space for fixed navbar */
+}
+
+body.modal-open {
+    overflow: visible;
 }
 
 .
