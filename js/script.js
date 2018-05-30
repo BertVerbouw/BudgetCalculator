@@ -103,7 +103,6 @@ var chart = Highcharts.chart('dashboardchart', {
 });
 
 function init() {
-    initFirebase();
     $('#inputModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var recipient = button.data('section') // Extract info from data-* attributes
@@ -126,21 +125,6 @@ function init() {
     for (var i = 0; i < sections.length; i++) {
         getFirebaseData(sections[i]);
     }
-}
-
-function initFirebase() {
-
-
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyB0-gzBIif0Ho5MPvWzDLE9ySiytyfMgKY",
-        authDomain: "budgetmanager-c533c.firebaseapp.com",
-        databaseURL: "https://budgetmanager-c533c.firebaseio.com",
-        projectId: "budgetmanager-c533c",
-        storageBucket: "",
-        messagingSenderId: "640045020422"
-    };
-    firebase.initializeApp(config);
 }
 
 function getTemplate() {
