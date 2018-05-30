@@ -16,16 +16,12 @@
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- Firebase Security -->
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 </head>
 
-<body data-spy="scroll" data-target="#sidenav" onload="init()">
-
+<body data-spy="scroll" data-target="#sidenav" onload="initFirebase()">
     <nav class="navbar navbar-dark fixed-top bg-dark p-0">
         <a class="navbar-brand pl-3" href="#dashboard">Huisje Inrichten</a>
-        <div class="p-1 pr-3">
+        <div id="totaldata" class="p-1 pr-3" style="display: none">
             <span class="navbar-text">
             Totaal: 
             </span>
@@ -33,8 +29,10 @@
             €0
             </span>
         </div>
+        <button id="signoutbtn" class="navbar-item btn btn-outline-primary mr-1" style="display: none" onclick="signout()">Sign Out</button>
     </nav>
-    <div class="container-fluid">
+    <div id="firebaseui-auth-container" class="logincontainer" style="display: none"></div>
+    <div id="maincontent" class="container-fluid" style="display: none">
         <div class="row">
             <nav id="sidenav" class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
@@ -268,18 +266,10 @@
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <!-- Firebase Security -->
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
     <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyB0-gzBIif0Ho5MPvWzDLE9ySiytyfMgKY",
-            authDomain: "budgetmanager-c533c.firebaseapp.com",
-            databaseURL: "https://budgetmanager-c533c.firebaseio.com",
-            projectId: "budgetmanager-c533c",
-            storageBucket: "",
-            messagingSenderId: "640045020422"
-        };
-        firebase.initializeApp(config);
-
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
