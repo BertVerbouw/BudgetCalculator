@@ -19,46 +19,16 @@
     <!-- Firebase Security -->
     <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+    <script src="js/script.js"></script>
 </head>
 
-<body data-spy="scroll" data-target="#sidenav">
+<body onload="initFirebase()">
     <div id="firebaseui-auth-container"></div>
 
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyB0-gzBIif0Ho5MPvWzDLE9ySiytyfMgKY",
-            authDomain: "budgetmanager-c533c.firebaseapp.com",
-            databaseURL: "https://budgetmanager-c533c.firebaseio.com",
-            projectId: "budgetmanager-c533c",
-            storageBucket: "",
-            messagingSenderId: "640045020422"
-        };
-        firebase.initializeApp(config);
-        var uiConfig = {
-            callbacks: {
-                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                    // User successfully signed in.
-                    // Return type determines whether we continue the redirect automatically
-                    // or whether we leave that to developer to handle.+
-
-                    return false;
-                }
-            },
-            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-            signInFlow: 'popup',
-            signInSuccessUrl: 'dashboard.html',
-            signInOptions: [
-                firebase.auth.EmailAuthProvider.PROVIDER_ID
-            ]
-        };
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start('#firebaseui-auth-container', uiConfig);
-
-    </script>
 </body>
 
 </html>

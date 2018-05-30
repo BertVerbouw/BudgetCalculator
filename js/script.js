@@ -102,6 +102,37 @@ var chart = Highcharts.chart('dashboardchart', {
         }]
 });
 
+function initFirebase() {
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB0-gzBIif0Ho5MPvWzDLE9ySiytyfMgKY",
+        authDomain: "budgetmanager-c533c.firebaseapp.com",
+        databaseURL: "https://budgetmanager-c533c.firebaseio.com",
+        projectId: "budgetmanager-c533c",
+        storageBucket: "",
+        messagingSenderId: "640045020422"
+    };
+    firebase.initializeApp(config);
+    var uiConfig = {
+        callbacks: {
+            signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                // User successfully signed in.
+                // Return type determines whether we continue the redirect automatically
+                // or whether we leave that to developer to handle.+
+
+                return true;
+            }
+        },
+        signInSuccessUrl: 'dashboard.html',
+        signInOptions: [
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
+            ]
+    };
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', uiConfig);
+
+}
+
 function init() {
     $('#inputModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
