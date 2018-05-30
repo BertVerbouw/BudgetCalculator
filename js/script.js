@@ -113,6 +113,23 @@ function initFirebase() {
         messagingSenderId: "640045020422"
     };
     firebase.initializeApp(config);
+
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            init();
+            document.getElementById('firebaseui-auth-container').style.display = 'none';
+            document.getElementById('maincontent').style.display = '';
+            document.getElementById('signoutbtn').style.display = '';
+            document.getElementById('totaldata').style.display = '';
+        } else {
+            document.getElementById('firebaseui-auth-container').style.display = '';
+            document.getElementById('signoutbtn').style.display = 'none';
+            document.getElementById('totaldata').style.display = 'none';
+            document.getElementById('maincontent').style.display = 'none';
+        }
+    });
+
     var uiConfig = {
         callbacks: {
             signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -120,17 +137,43 @@ function initFirebase() {
                 // Return type determines whether we continue the redirect automatically
                 // or whether we leave that to developer to handle.+
 
-                return true;
+                return false;
             }
         },
-        signInSuccessUrl: 'dashboard.html',
+        //Start it here 
+        credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+        //End it here 
+        signInFlow: 'popup',
+        'credentialHelper': firebaseui.auth.CredentialHelper.NONE,
+        signInSuccessUrl: '',
         signInOptions: [
-                firebase.auth.EmailAuthProvider.PROVIDER_ID
+            firebase.auth.EmailAuthProvider.PROVIDER_ID
             ]
     };
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    ui.start('#firebaseui-auth-container', uiConfig);
 
+    if (firebase.auth().currentUser == null) {
+        document.getElementById('maincontent').style.display = 'none';
+        document.getElementById('firebaseui-auth-container').style.display = '';
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start('#firebaseui-auth-container', uiConfig);
+    } else {
+        document.getElementById('maincontent').style.display = '';
+        document.getElementById('firebaseui-auth-container').style.display = 'none';
+    }
+}
+
+function signout() {
+    clearAll();
+    firebase.auth().signOut();
+}
+
+function clearAll() {
+    for (var i = 0; i < sections.length; i++) {
+        var list = document.getElementById(sections[0] + 'data');
+        list.innerHTML = "";
+        totals[i] = 0;
+        updateChart(sections[i]);
+    }
 }
 
 function init() {
@@ -153,6 +196,7 @@ function init() {
         modal.find('.key-edit').val(button.data('key'));
     })
     getTemplate();
+    clearAll();
     for (var i = 0; i < sections.length; i++) {
         getFirebaseData(sections[i]);
     }
