@@ -19,13 +19,13 @@
 
 <body data-spy="scroll" data-target="#sidenav" onload="init()">
     <nav class="navbar navbar-dark fixed-top bg-dark p-0">
-        <a class="navbar-brand pl-3" href="#dashboard">Mega Budget</a>
+        <a class="navbar-brand pl-3" href="#dashboard">Huisje Inrichten</a>
         <div class="p-1 pr-3">
             <span class="navbar-text">
             Totaal: 
             </span>
             <span class="navbar-text" id="grandtotal">
-            €250 
+            €0
             </span>
         </div>
     </nav>
@@ -49,6 +49,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#tuin">Tuin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sanitair">Sanitair</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#hal">Hal</a>
@@ -137,7 +140,22 @@
                         </div>
                         <div id="tuindata" class="card-body"></div>
                     </div>
-
+                    <span class="anchor" id="sanitair"></span>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Sanitair</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#inputModal" data-section="sanitair">+ Voorwerp toevoegen</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="sanitairdata" class="card-body"></div>
+                    </div>
                     <span class="anchor" id="hal"></span>
                     <div class="card mt-3">
                         <div class="card-header">
@@ -192,8 +210,8 @@
                                 <input type="text" class="form-control" id="naamInput" required>
                             </div>
                             <div class="form-group">
-                                <label for="priceInput">Prijs</label>
-                                <input type="number" class="form-control" id="priceInput">
+                                <label for="priceInput">Prijs (€)</label>
+                                <input type="number" class="form-control" id="priceInput" value="0">
                             </div>
                             <div class="form-group">
                                 <label for="linksInput">Links</label>
@@ -201,7 +219,6 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn-primary" type="submit" onclick="addItem()">Toevoegen</button>
                         </div>
                     </form>
@@ -218,25 +235,26 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="inputform">
-                        <input type="hidden" class="modal-section">
+                    <form id="editform">
+                        <input type="hidden" class="modal-section-edit">
+                        <input type="hidden" class="key-edit">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="naamEdit">Naam</label>
-                                <input type="text" class="form-control" id="naamEdit" required>
+                                <input type="text" class="form-control naam-edit" id="naamEdit" required>
                             </div>
                             <div class="form-group">
                                 <label for="priceEdit">Prijs</label>
-                                <input type="number" class="form-control" id="priceEdit">
+                                <input type="number" class="form-control price-edit" id="priceEdit">
+                                <input type="hidden" class="form-control price-orig" id="priceOrig">
                             </div>
                             <div class="form-group">
                                 <label for="linksEdit">Links</label>
-                                <textarea class="form-control" id="linksEdit" rows="3"></textarea>
+                                <textarea class="form-control links-edit" id="linksEdit" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" type="submit" onclick="editItem()">Toevoegen</button>
+                            <button type="button" class="btn btn-primary" type="submit" onclick="editItem()">Aanpassen</button>
                         </div>
                     </form>
                 </div>
@@ -257,7 +275,6 @@
             messagingSenderId: "640045020422"
         };
         firebase.initializeApp(config);
-
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -265,27 +282,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="js/bootstrap-confirmation.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="js/script.js"></script>
-    <script>
-        $('#inputModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('section') // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-section').val(recipient)
-        })
-        $('#editModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('section') // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-section').val(recipient)
-        })
-
-    </script>
 </body>
 
 </html>

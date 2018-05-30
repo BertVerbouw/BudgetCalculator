@@ -3,11 +3,17 @@ body {
     position: relative;
 }
 
+/* unset bs3 setting */
+
+.modal-open {
+    overflow: auto;
+}
+
 .anchor {
     display: block;
-    height: 58px;
+    height: 42px;
     /*same height as header*/
-    margin-top: -58px;
+    margin-top: -42px;
     /*same height as header*/
     visibility: hidden;
 }
