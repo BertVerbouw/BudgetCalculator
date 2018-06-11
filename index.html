@@ -21,15 +21,7 @@
 <body data-spy="scroll" data-target="#sidenav" onload="initFirebase()">
     <nav class="navbar navbar-dark fixed-top bg-dark p-0">
         <a class="navbar-brand pl-3" href="#dashboard">Huisje Inrichten</a>
-        <div id="totaldata" class="p-1 pr-3" style="display: none">
-            <span class="navbar-text">
-            Totaal: 
-            </span>
-            <span class="navbar-text" id="grandtotal">
-            €0
-            </span>
-        </div>
-        <button id="signoutbtn" class="navbar-item btn btn-outline-primary mr-1" style="display: none" onclick="signout()">Sign Out</button>
+        <button id="signoutbtn" class="navbar-item btn btn-outline-primary m-1" style="display: none" onclick="signout()">Sign Out</button>
     </nav>
     <div id="firebaseui-auth-container" class="logincontainer" style="display: none"></div>
     <div id="maincontent" class="container-fluid" style="display: none">
@@ -69,9 +61,25 @@
                 <div>
                     <span class="anchor" id="dashboard"></span>
                     <div class="card">
-                        <h4 class="card-header card-title">
-                            Dashboard
-                        </h4>
+                        <div class="card-header">
+                            <div class="navbar navbar-default m-0 p-0">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <h4 class="mb-0">Dashboard</h4>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <h5 id="totaldata" style="display: none" class="navbar-text m-0">
+                                        <span>
+                                    Totaal: 
+                                    </span>
+                                        <span id="grandtotal">
+                                            €0
+                                        </span>
+                                    </h5>
+                                </ul>
+                            </div>
+                        </div>
                         <div id="dashboardchart" style="height:87vh" class="card-body"></div>
                     </div>
                     <span class="anchor" id="living"></span>
@@ -263,7 +271,6 @@
             </div>
         </div>
     </div>
-
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
     <!-- Firebase Security -->
